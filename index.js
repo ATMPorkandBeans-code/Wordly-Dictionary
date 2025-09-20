@@ -6,13 +6,14 @@ const defContainer = document.getElementById("definition-display");
 const audioPlayer = document.getElementById("audio");
 const previousWordDisplay = document.getElementById("prev-word-display");
 
-const previousWords = [];
+const previousWords = []; //Word Library array
 
 defineButton.addEventListener("click", function () {
+  //"Look up Button"
   const word = wordInput.value;
   defineWord(word);
 });
-
+//Accesses API for given word and call the Display function
 const defineWord = (word) => {
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
     .then((response) => {
@@ -27,7 +28,7 @@ const defineWord = (word) => {
       console.error(error);
     });
 };
-
+//Displays word, definition, synonyms, audio and phentics to User
 const displayWordInfo = (data) => {
   const dataObject = data[0];
   const word = dataObject.word;
@@ -40,34 +41,34 @@ const displayWordInfo = (data) => {
   } else {
     console.log(`${word} already in Word Library`);
   }
-
+  //clears prior content
   phoneticContainer.textContent = "";
   synonymContainer.textContent = "";
   defContainer.textContent = "";
   audioPlayer.src = "";
-
+  //Add titles to content
   phoneticContainer.textContent = "PHONETICS";
   synonymContainer.textContent = "SYNONYMS";
   defContainer.textContent = "DEFINITIONS";
-
+  //Audio loop and display
   dataObject.phonetics.forEach((audio) => {
     audioPlayer.src = audio.audio;
     console.log(audio.audio);
   });
-
+  //Phentics loop  and display
   dataObject.phonetics.forEach((phonetic) => {
     const displayPhonetic = document.createElement("p");
     displayPhonetic.textContent = phonetic.text;
     phoneticContainer.appendChild(displayPhonetic);
   });
-
+  //Synonyms loop and display
   dataObject.meanings.forEach((meaning) => {
     meaning.synonyms.forEach((synonym) => {
       const displaySynonym = document.createElement("p");
       displaySynonym.textContent = `${synonym}`;
       synonymContainer.appendChild(displaySynonym);
     });
-
+    //definitions and part of speech loop and display
     meaning.definitions.forEach((definition) => {
       const definitionList = document.createElement("ul");
       const liElement = document.createElement("li");
@@ -76,6 +77,7 @@ const displayWordInfo = (data) => {
       defContainer.appendChild(definitionList);
     });
   });
+  //Check if any displayed content is missing from API
   if (synonymContainer.textContent === "SYNONYMS") {
     const displayError = document.createElement("p");
     displayError.textContent = "No Synonyms found.";
@@ -91,13 +93,13 @@ const displayWordInfo = (data) => {
     displayError.textContent = "No Defintions found.";
     defContainer.appendChild(displayError);
   }
-
+  //displays word library by checking array length
   if (previousWords.length > 0) {
     displaypreviousWords();
     console.log(previousWords);
   }
 };
-
+//displays error if word not found
 const displayError = (error) => {
   phoneticContainer.textContent = "";
   synonymContainer.textContent = "";
@@ -106,7 +108,7 @@ const displayError = (error) => {
   const errorDisplay = document.getElementById("display-word");
   errorDisplay.textContent = `Ran into an error looking your word up, please try again...`;
 };
-
+//displays word library
 const displaypreviousWords = () => {
   previousWordDisplay.style.display = "";
   const itemList = document.createElement("ul");
@@ -120,7 +122,7 @@ const displaypreviousWords = () => {
   });
   previousWordDisplay.appendChild(itemList);
 };
-
+//hides word library before any words looked up
 if (previousWords.length === 0) {
   previousWordDisplay.style.display = "none";
 }
