@@ -1,0 +1,69 @@
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #ddb892;
+}
+
+body {
+  background-color: #ede0d4;
+}
+
+#search {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.audio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+h1 {
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 2.5em;
+  margin: 0;
+}
+#word-container {
+  display: inline-grid;
+  grid-template-columns: 150px 1200x 200px;
+  grid-template-rows: 100px 1fr;
+  font-size: 1em;
+}
+#display-word {
+  grid-column: 2 / span 2;
+  font-size: 2.5em;
+}
+
+#synonym-display {
+  padding-left: 20px;
+  padding-right: 100px;
+}
+
+#phonetic-display {
+  padding-left: 80px;
+  padding-right: 100px;
+}
+
+#definition-display {
+  min-width: 1000px;
+}
+
+#prev-word-display {
+  padding-top: 100px;
+  width: 200px;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto; /* auto left/right margins center the box */
+  margin-top: 100px;
+  background-color: #ddb892;
+  box-sizing: border-box;
+  color: black;
+  display: flex;
+  flex-direction: column; /* stack items vertically */
+  align-items: flex-start;
+}

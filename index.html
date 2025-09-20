@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <header>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Dictionary</title>
+      <h1>Wordly Dictionary</h1>
+      <link rel="stylesheet" href="style.css" />
+    </header>
+  </head>
+  <body>
+    <div id="search">
+      <input type="text" id="word-input" placeholder="Enter a word.." />
+      <button type="button" id="word-button">Look word up..</button>
+    </div>
+
+    <div class="audio-container">
+      <audio id="audio" controls>
+        <source type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div id="word-container">
+      <div id="display-word"></div>
+      <div id="phonetic-display"></div>
+      <div id="definition-display"></div>
+      <div id="synonym-display"></div>
+    </div>
+
+    <div id="prev-word-display"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
